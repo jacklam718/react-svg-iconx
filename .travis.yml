@@ -16,7 +16,7 @@ deploy:
   api_key: $NPM_TOKEN
   skip_cleanup: true
   on:
-    branch: master
+    all_branches: true
     tags: true
     repo: jacklam718/react-svg-iconx
 deploy:
