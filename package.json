@@ -10,6 +10,16 @@
     "storybook": "start-storybook -p 6006",
     "build-storybook": "build-storybook"
   },
+  "keywords": [
+    "react-svg-iconx",
+    "react-svg-icons",
+    "react svg icons",
+    "component",
+    "react-component",
+  ],
+  "author": "jacklam <jacklam718@gmail.com> (https://github.com/jacklam718)",
+  "license": "MIT",
+  "homepage": "https://github.com/jacklam718/react-svg-iconx/blob/master/README.md",
   "dependencies": {
     "babel-preset-es2015": "^6.24.1",
     "babel-preset-react": "^6.24.1",
