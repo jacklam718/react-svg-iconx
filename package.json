@@ -1,6 +1,6 @@
 {
   "name": "react-svg-iconx",
-  "version": "0.0.1",
+  "version": "0.0.2",
   "index": "dist/index.js",
   "private": false,
   "scripts": {
