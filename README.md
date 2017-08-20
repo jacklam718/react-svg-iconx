@@ -7,6 +7,19 @@
 ## Installation
 `yarn add react-svg-iconx`
 
+## Usage
+```javascript
+import ActionAccessibility from 'react-svg-iconx/svg-icons/action/ActionAccessibility';
+
+<ActionAccessibility
+  color="#2196F3"
+  hoverColor="#1386B5"
+  style={{
+    width: 54,
+    height: 54,
+  }}
+/>
+```
 
 ## peerDependencies
 * `prop-types`
