@@ -7,7 +7,7 @@ const filenames = fs.readdirSync(SOURCE).map(name => name);
 
 function copyFile(file) {
   const sourcePath = filename => path.join(SOURCE, filename);
-  const buildPath = path.resolve(__dirname, '..', path.basename(file));
+  const buildPath = path.resolve(__dirname, '../build', path.basename(file));
   return new Promise((resolve) => {
     fse.copy(sourcePath(file), buildPath, (err) => {
       if (err) throw err;
