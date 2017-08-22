@@ -1,9 +1,10 @@
 {
   "name": "react-svg-iconx",
-  "version": "0.0.6",
+  "version": "0.0.7",
   "main": "dist/index.js",
   "private": false,
   "scripts": {
+    "prepublish": "yarn run build",
     "postpublish": "dist",
     "clean": "rimraf dist",
     "prebuild": "npm run clean",
