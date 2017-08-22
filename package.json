@@ -1,7 +1,7 @@
 {
   "name": "react-svg-iconx",
   "version": "0.0.5",
-  "index": "dist/index.js",
+  "main": "dist/index.js",
   "private": false,
   "scripts": {
     "clean": "rimraf dist",
@@ -32,14 +32,15 @@
   "devDependencies": {
     "@kadira/storybook": "^2.21.0",
     "babel-cli": "^6.26.0",
-    "react": "^15.6.1",
-    "react-dom": "^15.6.1",
+    "babel-eslint": "^7.2.3",
     "eslint": "^4.5.0",
     "eslint-config-airbnb": "^15.1.0",
     "eslint-plugin-import": "^2.7.0",
     "eslint-plugin-jsx-a11y": "^5.1.1",
     "eslint-plugin-react": "^7.2.1",
     "prop-types": "^15.5.10",
+    "react": "^15.6.1",
+    "react-dom": "^15.6.1",
     "rimraf": "^2.6.1"
   }
 }
