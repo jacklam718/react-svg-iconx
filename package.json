@@ -1,11 +1,9 @@
 {
   "name": "react-svg-iconx",
-  "version": "0.0.10",
+  "version": "0.0.16",
   "main": "dist/index.js",
   "private": false,
   "scripts": {
-    "postpublish": "babel-node ./scripts/copy-files.js && npm publish build --tag next",
-    "postrelease": "npm publish build --tag next",
     "clean": "rimraf dist",
     "prebuild": "npm run clean",
     "build": "babel src/ -d dist/",
