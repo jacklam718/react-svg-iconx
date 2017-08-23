@@ -3,16 +3,18 @@ cache:
   yarn: true
   directories:
     - node_modules
+    - storybook-static
 before_install:
   - npm install -g yarn --cache-min "999999999"
 node_js: '7'
 install: yarn
 after_success:
-  - rm -rf build && cp -r dist build && cp README.md package.json build
+  - rm -rf build &&
+    cp -r dist build &&
+    cp README.md package.json build
 before_deploy:
   - yarn run build-storybook
-before_deploy:
-  - cd build
+    && cd build
 deploy:
   - provider: npm
     skip_cleanup: true
@@ -24,7 +26,7 @@ deploy:
       all_branches: true
   - provider: pages
     skip_cleanup: true
-    local_dir: storybook-static
+    local_dir: ../storybook-static
     github_token: $GITHUB_TOKEN
     on:
       branch: master
