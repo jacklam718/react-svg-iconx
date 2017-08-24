@@ -11,10 +11,10 @@ install: yarn
 after_success:
   - rm -rf build &&
     cp -r dist build &&
-    cp README.md package.json build
+    cp LICENSE README.md package.json build
 before_deploy:
-  - yarn run build-storybook
-    && cd build
+  - yarn run build-storybook &&
+    cd build
 deploy:
   - provider: npm
     skip_cleanup: true
