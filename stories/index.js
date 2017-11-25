@@ -40,7 +40,7 @@ const iconTypes = {
 Object.keys(iconTypes).forEach((iconType) => {
   const stories = storiesOf(iconType, module);
   Object.keys(iconTypes[iconType]).forEach((iconName) => {
-    let IconComponent = iconTypes[iconType][iconName];
+    let Icon = iconTypes[iconType][iconName];
     if (iconName.startsWith('Animation')) {
       class IconContainer extends Component {
         state = {
@@ -48,11 +48,11 @@ Object.keys(iconTypes).forEach((iconType) => {
         }
 
         render() {
-          const Icon = iconTypes[iconType][iconName];
+          const IconElement = iconTypes[iconType][iconName];
           const buttonText = this.state.show ? 'Hide' : 'Show';
           return (
             <div>
-              <Icon
+              <IconElement
                 {...this.props}
                 show={this.state.show}
               />
@@ -69,11 +69,11 @@ Object.keys(iconTypes).forEach((iconType) => {
         }
       }
 
-      IconComponent = IconContainer;
+      Icon = IconContainer;
     }
 
     stories.add(iconName, () => (
-      <IconComponent
+      <Icon
         color="#2196F3"
         hoverColor="#1386B5"
         style={{
