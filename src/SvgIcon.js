@@ -1,6 +1,6 @@
 // @flow
 
-import React, {Component} from 'react';
+import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import transitions from './transitions';
 
@@ -12,7 +12,7 @@ class SvgIcon extends Component {
      * Elements passed into the SVG Icon.
      */
     children: PropTypes.node,
-    
+
     color: PropTypes.string,
     /**
      * This is the icon color when the mouse hovers over the icon.
@@ -52,12 +52,12 @@ class SvgIcon extends Component {
   };
 
   handleMouseLeave = (event) => {
-    this.setState({hovered: false});
+    this.setState({ hovered: false });
     this.props.onMouseLeave(event);
   };
 
   handleMouseEnter = (event) => {
-    this.setState({hovered: true});
+    this.setState({ hovered: true });
     this.props.onMouseEnter(event);
   };
 
@@ -74,12 +74,12 @@ class SvgIcon extends Component {
       ...other
     } = this.props;
 
-    const _offColor = offColor ? offColor : 'currentColor';
-    const onColor = hoverColor ? hoverColor : _offColor;
+    const _offColor = offColor || 'currentColor';
+    const onColor = hoverColor || _offColor;
 
     const mergedStyles = Object.assign({
       display: 'inline-block',
-      color: color,
+      color,
       fill: this.state.hovered ? onColor : _offColor,
       height: 24,
       width: 24,

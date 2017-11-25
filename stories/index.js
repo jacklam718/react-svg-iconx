@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { Component } from 'react';
 import { storiesOf } from '@kadira/storybook';
 
 import * as actionIcons from '../src/svg-icons/action';
@@ -16,6 +16,7 @@ import * as navigationIcons from '../src/svg-icons/navigation';
 import * as notificationIcons from '../src/svg-icons/notification';
 import * as placesIcons from '../src/svg-icons/places';
 import * as toggleIcons from '../src/svg-icons/toggle';
+import * as animationIcons from '../src/svg-icons/animation';
 
 const iconTypes = {
   action: actionIcons,
@@ -33,14 +34,46 @@ const iconTypes = {
   notification: notificationIcons,
   places: placesIcons,
   toggle: toggleIcons,
+  animation: animationIcons,
 };
 
 Object.keys(iconTypes).forEach((iconType) => {
   const stories = storiesOf(iconType, module);
   Object.keys(iconTypes[iconType]).forEach((iconName) => {
-    const Icon = iconTypes[iconType][iconName];
+    let IconComponent = iconTypes[iconType][iconName];
+    if (iconName.startsWith('Animation')) {
+      class IconContainer extends Component {
+        state = {
+          show: false,
+        }
+
+        render() {
+          const Icon = iconTypes[iconType][iconName];
+          const buttonText = this.state.show ? 'Hide' : 'Show';
+          return (
+            <div>
+              <Icon
+                {...this.props}
+                show={this.state.show}
+              />
+
+              <button
+                onClick={() => {
+                  this.setState({ show: !this.state.show });
+                }}
+              >
+                {buttonText}
+              </button>
+            </div>
+          );
+        }
+      }
+
+      IconComponent = IconContainer;
+    }
+
     stories.add(iconName, () => (
-      <Icon
+      <IconComponent
         color="#2196F3"
         hoverColor="#1386B5"
         style={{
@@ -49,5 +82,5 @@ Object.keys(iconTypes).forEach((iconType) => {
         }}
       />
     ));
-  })
-})
+  });
+});
