@@ -57,13 +57,15 @@ Object.keys(iconTypes).forEach((iconType) => {
                 show={this.state.show}
               />
 
-              <button
-                onClick={() => {
-                  this.setState({ show: !this.state.show });
-                }}
-              >
-                {buttonText}
-              </button>
+              <div style={{ marginTop: '100px', marginLeft: '50px' }}>
+                <button
+                  onClick={() => {
+                    this.setState({ show: !this.state.show });
+                  }}
+                >
+                  {buttonText}
+                </button>
+              </div>
             </div>
           );
         }
