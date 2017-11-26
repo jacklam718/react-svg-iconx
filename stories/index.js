@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { storiesOf } from '@kadira/storybook';
 
+import * as animationIcons from '../src/svg-icons/animation';
 import * as actionIcons from '../src/svg-icons/action';
 import * as alertIcons from '../src/svg-icons/alert';
 import * as avIcons from '../src/svg-icons/av';
@@ -16,9 +17,9 @@ import * as navigationIcons from '../src/svg-icons/navigation';
 import * as notificationIcons from '../src/svg-icons/notification';
 import * as placesIcons from '../src/svg-icons/places';
 import * as toggleIcons from '../src/svg-icons/toggle';
-import * as animationIcons from '../src/svg-icons/animation';
 
 const iconTypes = {
+  animation: animationIcons,
   action: actionIcons,
   alert: alertIcons,
   av: avIcons,
@@ -34,7 +35,6 @@ const iconTypes = {
   notification: notificationIcons,
   places: placesIcons,
   toggle: toggleIcons,
-  animation: animationIcons,
 };
 
 Object.keys(iconTypes).forEach((iconType) => {

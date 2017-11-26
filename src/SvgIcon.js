@@ -1,6 +1,6 @@
 // @flow
 
-import React, { Component } from 'react';
+import React, { Component, Children, cloneElement } from 'react';
 import PropTypes from 'prop-types';
 import transitions from './transitions';
 
@@ -8,6 +8,7 @@ class SvgIcon extends Component {
   static muiName = 'SvgIcon';
 
   static propTypes = {
+    offColor: PropTypes.string,
     /**
      * Elements passed into the SVG Icon.
      */
@@ -65,7 +66,7 @@ class SvgIcon extends Component {
     const {
       children,
       color,
-      offColor,
+      offColor: _offColor,
       hoverColor,
       onMouseEnter, // eslint-disable-line no-unused-vars
       onMouseLeave, // eslint-disable-line no-unused-vars
@@ -74,18 +75,34 @@ class SvgIcon extends Component {
       ...other
     } = this.props;
 
-    const _offColor = offColor || 'currentColor';
-    const onColor = hoverColor || _offColor;
+    const offColor = _offColor || 'currentColor';
+    const onColor = hoverColor || offColor;
+    const fill = this.state.hovered ? onColor : offColor;
 
     const mergedStyles = Object.assign({
       display: 'inline-block',
       color,
-      fill: this.state.hovered ? onColor : _offColor,
+      fill,
       height: 24,
       width: 24,
       userSelect: 'none',
       transition: transitions.easeOut(),
     }, style);
+
+    const newChildren = Children.map(children, (child) => {
+      if (child.props.style && !child.props.style.strokeWidth) {
+        return child;
+      }
+
+      const newChild = cloneElement(child, {
+        style: {
+          ...child.props.style,
+          stroke: fill,
+        },
+
+      });
+      return newChild;
+    });
 
     return (
       <svg
@@ -95,7 +112,7 @@ class SvgIcon extends Component {
         style={mergedStyles}
         viewBox={viewBox}
       >
-        {children}
+        {newChildren}
       </svg>
     );
   }

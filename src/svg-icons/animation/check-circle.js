@@ -40,7 +40,7 @@ let AnimationCheckCircle = (props) => {
 
   return (
     <SvgIcon
-      viewBox="0 0 57 57"
+      viewBox="-6 -6 50 50"
       {...props}
     >
       <path
