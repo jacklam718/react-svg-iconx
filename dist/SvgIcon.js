@@ -61,7 +61,7 @@ var SvgIcon = function (_Component) {
       var _props = this.props,
           children = _props.children,
           color = _props.color,
-          offColor = _props.offColor,
+          _offColor = _props.offColor,
           hoverColor = _props.hoverColor,
           onMouseEnter = _props.onMouseEnter,
           onMouseLeave = _props.onMouseLeave,
@@ -69,18 +69,33 @@ var SvgIcon = function (_Component) {
           viewBox = _props.viewBox,
           other = _objectWithoutProperties(_props, ['children', 'color', 'offColor', 'hoverColor', 'onMouseEnter', 'onMouseLeave', 'style', 'viewBox']);
 
-      var _offColor = offColor ? offColor : 'currentColor';
-      var onColor = hoverColor ? hoverColor : _offColor;
+      var offColor = _offColor || 'currentColor';
+      var onColor = hoverColor || offColor;
+      var fill = this.state.hovered ? onColor : offColor;
 
       var mergedStyles = Object.assign({
         display: 'inline-block',
         color: color,
-        fill: this.state.hovered ? onColor : _offColor,
+        fill: fill,
         height: 24,
         width: 24,
         userSelect: 'none',
         transition: _transitions2.default.easeOut()
       }, style);
+
+      var newChildren = _react.Children.map(children, function (child) {
+        if (child.props.style && !child.props.style.strokeWidth) {
+          return child;
+        }
+
+        var newChild = (0, _react.cloneElement)(child, {
+          style: _extends({}, child.props.style, {
+            stroke: fill
+          })
+
+        });
+        return newChild;
+      });
 
       return _react2.default.createElement(
         'svg',
@@ -90,7 +105,7 @@ var SvgIcon = function (_Component) {
           style: mergedStyles,
           viewBox: viewBox
         }),
-        children
+        newChildren
       );
     }
   }]);
@@ -100,6 +115,7 @@ var SvgIcon = function (_Component) {
 
 SvgIcon.muiName = 'SvgIcon';
 SvgIcon.propTypes = {
+  offColor: _propTypes2.default.string,
   /**
    * Elements passed into the SVG Icon.
    */

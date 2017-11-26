@@ -7,13 +7,17 @@
 ## Installation
 `yarn add react-svg-iconx`
 
+## Preview
+<img src="https://raw.githubusercontent.com/jacklam718/react-svg-iconx/master/.github/check-circle.gif" width="150">
+
 ## Usage
 ```javascript
-import ActionAccessibility from 'react-svg-iconx/svg-icons/action/ActionAccessibility';
+import AnimationCheckCircle from 'react-svg-iconx/svg-icons/animation/AnimationCheckCircle';
 
-<ActionAccessibility
+<AnimationCheckCircle
   color="#2196F3"
   hoverColor="#1386B5"
+  show
   style={{
     width: 54,
     height: 54,
