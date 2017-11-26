@@ -1,6 +1,38 @@
 import React from 'react';
 import pure from 'recompose/pure';
+import styled, { css } from 'styled-components';
 import SvgIcon from '../../SvgIcon';
+
+const pathStyle = css`
+  opacity: 1;
+  stroke-dashoffset: 0;
+`;
+
+console.log(pathStyle);
+const Circle = styled.path`
+  transition: all 1s;
+  opacity: 0;
+  stroke-dasharray: 130;
+  stroke-dashoffset: 130;
+  fill: none;
+  stroke: #000;
+  stroke-width: 3;
+  stroke-linejoin: round;
+  stroke-miterlimit: 10;
+  ${props => props.show && pathStyle}
+`;
+
+const Check = styled.polyline`
+  stroke-dasharray: 50;
+  stroke-dashoffset: 50;
+  transition: stroke-dashoffset 1s 0.5s ease-out;
+  fill: none;
+  stroke: #000;
+  stroke-width: 3;
+  stroke-linejoin: round;
+  stroke-miterlimit: 10;
+  ${props => props.show && pathStyle}
+`;
 
 const styles = {
   circle: {
@@ -30,30 +62,21 @@ const styles = {
   },
 };
 
-let AnimationCheckCircle = (props) => {
-  let circleStyle = styles.circle;
-  let checkStyle = styles.check;
-  if (props.show) {
-    circleStyle = { ...circleStyle, ...styles.path, ...props.circleStyle };
-    checkStyle = { ...checkStyle, ...styles.path, ...props.checkStyle };
-  }
-
-  return (
-    <SvgIcon
-      viewBox="-6 -6 50 50"
-      {...props}
-    >
-      <path
-        style={circleStyle}
-        d="M30.5,6.5L30.5,6.5c6.6,6.6,6.6,17.4,0,24l0,0c-6.6,6.6-17.4,6.6-24,0l0,0c-6.6-6.6-6.6-17.4,0-24l0,0C13.1-0.2,23.9-0.2,30.5,6.5z"
-      />
-      <polyline
-        style={checkStyle}
-        points="11.6,20 15.9,24.2 26.4,13.8"
-      />
-    </SvgIcon>
-  );
-};
+let AnimationCheckCircle = props => (
+  <SvgIcon
+    viewBox="0 0 37 37"
+    {...props}
+  >
+    <Circle
+      show={props.show}
+      d="M30.5,6.5L30.5,6.5c6.6,6.6,6.6,17.4,0,24l0,0c-6.6,6.6-17.4,6.6-24,0l0,0c-6.6-6.6-6.6-17.4,0-24l0,0C13.1-0.2,23.9-0.2,30.5,6.5z"
+    />
+    <Check
+      show={props.show}
+      points="11.6,20 15.9,24.2 26.4,13.8"
+    />
+  </SvgIcon>
+);
 
 AnimationCheckCircle = pure(AnimationCheckCircle);
 AnimationCheckCircle.displayName = 'AnimationCheckCircle';

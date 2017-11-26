@@ -1,6 +1,8 @@
 import React, { Component } from 'react';
 import { storiesOf } from '@kadira/storybook';
 
+import './components';
+
 import * as animationIcons from '../src/svg-icons/animation';
 import * as actionIcons from '../src/svg-icons/action';
 import * as alertIcons from '../src/svg-icons/alert';
